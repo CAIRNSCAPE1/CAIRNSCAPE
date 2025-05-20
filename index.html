@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cairnscape</title>
+  <style>
+    body {
+      font-family: monospace;
+      margin: 0;
+      padding: 0;
+      background-color: #000;
+      color: #0f0;
+    }
+
+    .terminal {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: #000;
+      color: #0f0;
+      text-shadow: 0 0 5px #0f0;
+    }
+
+    input[type="password"] {
+      padding: 10px;
+      background-color: #111;
+      color: #0f0;
+      border: 1px solid #0f0;
+      margin-top: 10px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin-top: 10px;
+      background-color: #0f0;
+      color: #000;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: #080;
+    }
+
+    #main-content {
+      background-color: #f5f5f5;
+      color: #222;
+      padding: 20px;
+      font-family: sans-serif;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 10px;
+    }
+
+    nav a {
+      margin-right: 15px;
+      text-decoration: none;
+      color: #333;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .dark {
+      background-color: #111;
+      color: #eee;
+    }
+
+    .dark nav a {
+      color: #eee;
+    }
+
+    .comments textarea {
+      width: 100%;
+      height: 80px;
+      margin-top: 10px;
+      padding: 10px;
+    }
+
+    .comments button {
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Terminal-style login screen -->
+  <div id="login-screen" class="terminal">
+    <h1>Welcome to CAIRNSCAPE</h1>
+    <p>Please enter password to access:</p>
+    <input type="password" id="password-input" placeholder="Enter password..." />
+    <button onclick="checkPassword()">Enter</button>
+    <p id="error-msg"></p>
+  </div>
+
+  <!-- Main blog content -->
+  <div id="main-content" style="display:none">
+    <header>
+      <h1>Cairnscape</h1>
+      <nav>
+        <a href="#">Home</a>
+        <a href="#about">About</a>
+        <a href="#blog">Blog</a>
+        <button id="toggle-dark">🌗</button>
+      </nav>
+    </header>
+
+    <main>
+      <section id="about">
+        <h2>About</h2>
+        <p>Cairnscape is a blog dedicated to fascinating historical insights, stories, and thoughts.</p>
+      </section>
+
+      <section id="blog">
+        <h2>Latest Posts</h2>
+        <article>
+          <h3>The Mystery of the Roman Ninth Legion</h3>
+          <p>A short sample post goes here...</p>
+          <!-- Comment section -->
+          <div class="comments">
+            <h4>Comments</h4>
+            <textarea placeholder="Leave a comment..."></textarea>
+            <button>Submit</button>
+          </div>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const PASSWORD = "history"; // You can change this password
+    function checkPassword() {
+      const input = document.getElementById("password-input").value;
+      if (input === PASSWORD) {
+        document.getElementById("login-screen").style.display = "none";
+        document.getElementById("main-content").style.display = "block";
+      } else {
+        document.getElementById("error-msg").innerText = "Incorrect password.";
+      }
+    }
+
+    document.getElementById("toggle-dark").onclick = () => {
+      document.body.classList.toggle("dark");
+    };
+  </script>
+</body>
+</html>
